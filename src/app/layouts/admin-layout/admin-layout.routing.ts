@@ -11,5 +11,34 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'tables',         component: TablesComponent },
     { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent }
+    { path: 'maps',           component: MapsComponent },
+    {
+        //Saltos de rutas
+        path: 'theaters',
+        children: [
+            {
+                path: '',
+                loadChildren: () => import('src/app/pages/theaters/theaters.module').then(m => m.TheatersModule)
+            },
+
+            // {
+            //     path: 'list',
+            //     loadChildren: () => import('src/app/pages/theaters/list/list.component').then(m => m.ListComponent)
+            // },
+            // {
+            //     path: 'manage',
+            //     loadChildren: () => import('src/app/pages/theaters/manage/manage.component').then(m => m.ManageComponent)
+            // },
+        ],
+
+    },
+    {
+        path: 'seats',
+        children: [
+            {
+                path: '',
+                loadChildren: () => import('src/app/pages/seats/seats.module').then(m => m.SeatsModule)
+            },
+        ]
+    }
 ];
